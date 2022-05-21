@@ -1,7 +1,11 @@
 from tkinter import *
+from tkinter import filedialog
+from PIL import ImageTk, Image
+import os
+from random import randint
 
 
-class Funcionallity:
+class Functionality:
     def __init__(self):
         pass
 
@@ -12,26 +16,63 @@ class Funcionallity:
 root = Tk()
 root.title('Batch processing GUI')
 root.iconbitmap('C:/Users/User/Desktop/finalproj/logo.ico')
-root.geometry('1000x600')
+root.geometry('528x600')
 root.configure(background='#535353')
 
-# empty = Label(root, text= '                ')
-# empty.grid(row=0, column=0, )
-frame = LabelFrame(root, padx=9, pady=7, bg='#535353')
-frame.pack(pady=8)
 
-frame_for_window = LabelFrame(root, padx=900, pady=300, bg='#535353')
-frame_for_window.pack(padx=30, pady=25)
+# Create frame for title
+frame_text = LabelFrame(root, padx=12, pady=14, bg='#535353')
+frame_text.grid(row=0, column=0, columnspan=3)
 
-text = Label(frame,
+# # Create big frame
+# frame_big = LabelFrame(root, padx=4, pady=5, bg='#535353')
+# frame_big.pack()
+
+# Create title
+text = Label(frame_text,
              text="Batch processing GUI",
              font=('OCR A Extended', '30', 'bold'),
              bg='#535353',
              fg='white')
 text.pack()
 
-empty_label = Label(frame_for_window, text='')
-empty_label.pack()
-# text.grid(row=0, column=0, columnspan=3)
+# Buttons
+choose_file = Button(root,
+                     text='Choose file...',
+                     height=4,
+                     width=15,
+                     font=('OCR A Extended', '10'))
+choose_file.grid(row=1, column=1, pady=10)
+
+b_w = Button(root,
+             text='B/w filter',
+             height=4,
+             width=15,
+             font=('OCR A Extended', '10'))
+b_w.grid(row=2, column=0, pady=10)
+
+size = Button(root,
+              text='Size',
+              height=4,
+              width=15,
+              font=('OCR A Extended', '10'))
+size.grid(row=1, column=0, pady=10)
+
+watermark = Button(root,
+                   text='Add watermark',
+                   height=4,
+                   width=15,
+                   font=('OCR A Extended', '10'))
+watermark.grid(row=3, column=0, pady=10)
+
+# Take first images path in IMAGE folder
+images_list = os.listdir('C:/Users/User/Desktop/finalproj/IMAGES')
+rand_number = randint(1, len(images_list))
+image_path = os.path.join('C:/Users/User/Desktop/finalproj/IMAGES',
+                          images_list[rand_number])
+
+image_ = ImageTk.PhotoImage(Image.open(image_path))
+image_label = Label(image=image_)
+image_label.grid(row=2, column=1, rowspan=8, pady=20, padx=20)
 
 root.mainloop()

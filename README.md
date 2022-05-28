@@ -48,3 +48,4 @@ When you press one of the 'choose' buttons, the filedialog window opens. There y
 ### **Options**
 I didn't made them, because my app structure is a bit different from requirements. I suppose there should've been the options, where you choose all the filters and then push the 'batch process' button and it's done. In my case the batch processing is merged with options.
 
+# END OF README
